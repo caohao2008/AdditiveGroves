@@ -43,7 +43,10 @@ double rmse(doublev& predicts, doublev& realvals, doublev& weights)
 	for(int i = 0; i < n; i++)
 	{
 		double err = diff10d(predicts[i], realvals[i]);
-		mse += pow(err, 2) * weights[i];
+                if(err>0) 
+			mse += 0.25*pow(err, 2) * weights[i];
+                else
+                        mse += pow(err, 2) * weights[i];
 		wSum += weights[i];
 	}
 
